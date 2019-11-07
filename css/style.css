@@ -1,0 +1,123 @@
+body {
+    background-image: url("../pictures/background2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#mainBody {
+    box-shadow: 1px 2px 11px 1px #000000;
+    margin-top: 5%;
+    border-radius: 8px;
+    width: 95%;
+    height: 1200px;
+    z-index: 10;
+    position: relative;
+    margin-bottom: 2%;
+    background-color: #deeaf3;
+
+    text-align: center;
+    font-family: "Varela Round";
+    color: rgb(44, 42, 68);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: "Varela Round";
+}
+
+.navbar-custom {
+    color: rgb(0, 0, 0);
+    background-color: rgb(21, 20, 37);
+}
+
+.navbar-custom ul {
+    font-family: "Varela Round";
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: rgb(70, 69, 69);
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 45px;
+}
+
+hr{
+    border: 1px solid;
+    border-color: #eefbff;
+}
+
+input{
+    font-size: 17px;
+}
+
+::placeholder {
+    color: rgb(155, 155, 155);
+    opacity: 1;
+    text-align: center;
+}
+
+
+#map {
+    height: 500px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2%;
+    position: relative;
+}
+
+/* FORECAST WIDGETS */
+.weather {
+    margin-left: 13%;
+    margin-right: 13%;
+    margin-bottom: 9%;
+    margin-top: 9%;
+
+    display: flex;
+    flex-flow: column wrap;
+    box-shadow: 0px 1px 10px 0px #000000;
+    overflow: hidden;
+    background-color: #b6d3db;
+}
+
+.weather .forecastItem {
+    display: flex;
+    flex-flow: row wrap;
+    background-repeat: repeat-x;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    text-shadow: 2px 2px rgb(0, 0, 0);
+}
+
+.forecastItem .info {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    flex-grow: 2;
+}
+
+.forecastItem .info .temp {
+    font-size: 56px;
+}
+
+.forecastItem .info .wind {
+    font-size: 24px;
+}
+
+.forecastItem .info .pressure {
+    font-size: 24px;
+}
+
+.weather .icon {
+    text-align: center;
+    font-size: 64px;
+    flex-grow: 1;
+    position: relative;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>API Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-dark bg-dark navbar-fixed-top navbar-custom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Weather API</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Find city settings
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a onclick="ChangeFindBy('name');">By name</a></li>
+                        <li><a onclick="ChangeFindBy('zipcode');">By zip code</a></li>
+                        <li><a onclick="ChangeFindBy('id');">By city ID</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a onclick="SetDefaultCity();">Save this city as default</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="mainBody" class="container">
+        <!-- Heading -->
+        <h1 id="city">Ostrava</h1>
+        <p id="coords"></p>
+        <!-- Weater widgets -->
+        <div class="row" style="background-color: #eff7fc;">
+            <div class="col-sm-4" style="border-style: solid; border-width: 1px 0px 1px 0px; border-color: rgb(187, 187, 187)">
+                <div class="weather">
+                    <div class="forecastItem" id="forecastItemNow">
+                        <div class="info">
+                            <div>&nbsp;</div>
+                            <div class="temp" id="tempNow">1.5 &deg; <small>C</small></div>
+                            <div class="wind" id="windNow"><small><small>WIND:</small></small> 22 km/h</div>
+                            <div class="pressure" id="pressureNow"><small><small>Pressure:</small></small> 1000</div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <div class="icon" id="iconNow">
+                            <span class="wi wi-day-rain"></span>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size: 20px; margin-bottom: 1%; margin-top: 1%;">Now</p>
+            </div>
+
+            <div class="col-sm-4" style="background-color:#ecf6fc; border-style: solid; border-width: 1px; border-color: rgb(187, 187, 187)">
+                <div class="weather">
+                    <div class="forecastItem" id="forecastItemHours">
+                        <div class="info">
+                            <div>&nbsp;</div>
+                            <div class="temp" id="tempHours">15&deg; <small>C</small></div>
+                            <div class="wind" id="windHours"><small><small>WIND:</small></small> 22 km/h</div>
+                            <div class="pressure" id="pressureHours"><small><small>Pressure:</small></small> 1000</div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <div class="icon" id="iconHours">
+                            <span class="wi wi-day-rain"></span>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size: 20px; margin-bottom: 1%; margin-top: 1%;">3 hours</p>
+            </div>
+
+            <div class="col-sm-4" style="border-style: solid; border-width: 1px 0px 1px 0px; border-color: rgb(187, 187, 187)">
+                <div class="weather">
+                    <div class="forecastItem" id="forecastItemDays">
+                        <div class="info">
+                            <div>&nbsp;</div>
+                            <div class="temp" id="tempDays">15&deg; <small>C</small></div>
+                            <div class="wind" id="windDays"><small><small>WIND:</small></small> 22 km/h</div>
+                            <div class="pressure" id="pressureDays"><small><small>Pressure:</small></small> 1000</div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <div class="icon" id="iconDays">
+                            <span class="wi wi-day-rain"></span>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size: 20px; margin-bottom: 1%; margin-top: 1%;">5 days</p>
+            </div>
+            <div>
+                <input placeholder="enter city name" id="cityInput" onkeydown = "if (event.keyCode == 13) document.getElementById('changeCityButton').click()" type="text" style="margin-top: 2%;"/>
+                <input type="button" value="change" id="changeCityButton" onclick="sendRequest(document.getElementById('cityInput').value);" style="margin-bottom: 3%; margin-top: 1%;"/>
+            </div>          
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div id="map"></div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>Created by Sebastián Husár</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Varela+Round" rel="stylesheet">
+
+    <!-- Google -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhM5cf71jDkHtQVWrIQLIYhHj2Ovkbmh8"></script>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.min.js" ></script>
+    <script src="http://code.jquery.com/ui/1.7.0/jquery-ui.js" ></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="weather-icons-master/css/weather-icons.min.css" />
+
+    <!-- Custom css and javascript -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+    <script src="js/cookieFunctions.js"></script>    
+
+</body>
+</html>
